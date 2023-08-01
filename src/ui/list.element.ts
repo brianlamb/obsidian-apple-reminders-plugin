@@ -44,6 +44,13 @@ export class ListElement extends LitElement {
 		.apple-list-bottom-rule {
 			opacity: 0;
 		}
+
+		.compact-refresh-button {
+			position: relative;
+    	right: 0;
+    	bottom: 32px;
+    	float: right;
+		}
 	`;
 
 	refresh() {
@@ -62,11 +69,13 @@ export class ListElement extends LitElement {
 	render() {
 		return html`
 			<div class="apple-list-container">
+				${!this.spec?.compactView ? html`
 				<hr class="apple-list-top-rule" />
 				<h2>
 					<span
 						style="color: ${this.listMeta?.color}">${(!this.listMeta?.name) ? this.spec?.list : this.listMeta.name}</span>
 				</h2>
+				` : ""}
 
 				${(this.listMeta) ? html`
 					<span class="apple-list-reminders">
@@ -75,10 +84,14 @@ export class ListElement extends LitElement {
 
 				`
 				: this.loadingBar
-			}
+				}
+				${!this.spec?.compactView ? html`
 				<br />
 				<button @click="${this.refresh}" ?disabled="${this.refreshDisabled}">Refresh</button>
 				<hr class="apple-list-bottom-rule" />
+				` : html`
+				<button class="compact-refresh-button" @click="${this.refresh}" ?disabled="${this.refreshDisabled}">↻</button>
+				`}
 			</div>
 		`;
 	}

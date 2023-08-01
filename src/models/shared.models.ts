@@ -24,4 +24,5 @@ export interface AppleReminderSpec {
 	list: ListModel["name"];
 	reminders: ReminderModel["name"][];
 	filters?: FilterModel[];
+	compactView?: boolean;
 }
