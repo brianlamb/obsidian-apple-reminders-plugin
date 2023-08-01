@@ -25,4 +25,5 @@ export interface AppleReminderSpec {
 	reminders: ReminderModel["name"][];
 	filters?: FilterModel[];
 	compactView?: boolean;
+	hideToggle?: boolean;
 }

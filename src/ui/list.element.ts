@@ -22,7 +22,7 @@ export class ListElement extends LitElement {
 
 	get elements() {
 		return this.reminders.concat(this.customReminders).map((rem) => {
-			let el = new ReminderElement();
+			let el = new ReminderElement(this.spec);
 			el.model = rem;
 			el.list_name = this.listMeta.name;
 			return el;
@@ -48,7 +48,7 @@ export class ListElement extends LitElement {
 		.compact-refresh-button {
 			position: relative;
     	right: 0;
-    	bottom: 32px;
+    	bottom: 48px;
     	float: right;
 		}
 	`;

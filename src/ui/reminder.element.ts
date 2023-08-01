@@ -2,14 +2,20 @@ import { LitElement, html, css, CSSResultGroup } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { moment } from 'obsidian';
 import { APPLE_DATE_FORMAT } from 'src/data/constants';
-import { ReminderModel } from 'src/models/shared.models';
+import { AppleReminderSpec, ReminderModel } from 'src/models/shared.models';
 import { RemindersDataService } from 'src/data/reminders-data.service';
 
 @customElement('apple-reminder-element')
 export class ReminderElement extends LitElement {
 
+	@property() spec: AppleReminderSpec;
 	@property() list_name: string;
 	@property() model: ReminderModel;
+
+	constructor(_spec: AppleReminderSpec) {
+		super();
+		this.spec = _spec;
+	}
 
 	static styles?: CSSResultGroup | undefined = css`
 		.checkbox-round {
@@ -71,11 +77,13 @@ export class ReminderElement extends LitElement {
 	render() {
 		return html`
 			<span class="apple-reminder-container">
+				${this.spec.hideToggle ? (this.model.completed ? "☑️" : "") : html `
 				<input
 					type="checkbox"
 					class="checkbox-round"
 					@change=${this.onCheckboxChange}
 					?checked=${this.model.completed} />
+				`}
 				<span class="apple-reminder-fields">
 					${(this.model.priority && this.model.priority > 0) ?
 				html`
