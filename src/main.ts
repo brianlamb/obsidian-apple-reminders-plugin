@@ -3,7 +3,7 @@ import { ListElement } from './ui/list.element';
 import { RemindersDataService } from "./data/reminders-data.service";
 import { parse } from 'yaml';
 import { interval, Subscription } from 'rxjs';
-import { AppleRemindersPluginSettings, SampleSettingTab, DEFAULT_SETTINGS } from './ui/settings';
+import { AppleRemindersPluginSettings, AutoRefreshSettingTab, DEFAULT_SETTINGS } from './ui/settings';
 import { AppleReminderSpec } from './models/shared.models';
 
 
@@ -40,7 +40,7 @@ export default class AppleRemindersPlugin extends Plugin {
 		this.statusBar = this.addStatusBarItem();
 		this.statusBar.setText('Loading Apple Reminders...');
 
-		this.addSettingTab(new SampleSettingTab(this.app, this));
+		this.addSettingTab(new AutoRefreshSettingTab(this.app, this));
 
 		RemindersDataService.setLogger((x, timeout?: number) => this.message(x, timeout))
 		RemindersDataService.setSettings(this.settings);

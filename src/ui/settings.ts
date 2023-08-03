@@ -9,7 +9,7 @@ export const DEFAULT_SETTINGS: AppleRemindersPluginSettings = {
 	autoRefreshTime: 60
 }
 
-export class SampleSettingTab extends PluginSettingTab {
+export class AutoRefreshSettingTab extends PluginSettingTab {
 	plugin: AppleRemindersPlugin;
 
 	constructor(app: App, plugin: AppleRemindersPlugin) {
